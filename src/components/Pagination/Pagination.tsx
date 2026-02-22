@@ -4,16 +4,14 @@ import { getNumbers } from '../../utils';
 interface PaginationType {
   total: number;
   perPage: number;
-  currentPage: number;
-  onPageChange: (
-    value: number,
-  ) => React.MouseEventHandler<HTMLAnchorElement> | undefined | void;
+  currentPage?: number;
+  onPageChange: (value: number) => void;
 }
 
 export const Pagination = ({
   total,
   perPage,
-  currentPage,
+  currentPage = 1,
   onPageChange,
 }: PaginationType) => {
   const lastPageNumber = Math.ceil(total / perPage);

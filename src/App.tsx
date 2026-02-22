@@ -11,14 +11,15 @@ export const App: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [itemPerPage, setItemPerPage] = useState<number>(5);
 
-  function handlePageChange(newPageNum: number) {
-    setPage(newPageNum);
-  }
+  const handlePageChange = (argPage: number) => {
+    setPage(argPage);
+  };
 
-  function handlePerPageChange(tar: React.ChangeEvent<HTMLSelectElement>) {
-    setItemPerPage(Number(tar.target.value));
+  const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+    setItemPerPage(Number(e.target.value));
     setPage(1);
-  }
+  };
 
   const start = itemPerPage * (page - 1) + 1;
   const end = Math.min(itemPerPage * page, items.length);
