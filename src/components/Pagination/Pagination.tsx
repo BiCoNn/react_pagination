@@ -26,9 +26,12 @@ export const Pagination = ({
             className="page-link"
             href="#prev"
             aria-disabled={currentPage === 1 ? 'true' : 'false'}
-            onClick={
-              currentPage !== 1 ? () => onPageChange(currentPage - 1) : () => {}
-            }
+            onClick={e => {
+              e.preventDefault();
+              if (currentPage > 1) {
+                onPageChange(currentPage - 1);
+              }
+            }}
           >
             «
           </a>
@@ -43,7 +46,13 @@ export const Pagination = ({
               data-cy="pageLink"
               className="page-link"
               href="#1"
-              onClick={() => onPageChange(item)}
+              onClick={e => {
+                e.preventDefault();
+
+                if (item !== currentPage) {
+                  onPageChange(item);
+                }
+              }}
             >
               {item}
             </a>
@@ -58,11 +67,13 @@ export const Pagination = ({
             className="page-link"
             href="#next"
             aria-disabled={currentPage === lastPageNumber ? 'true' : 'false'}
-            onClick={
-              currentPage !== lastPageNumber
-                ? () => onPageChange(currentPage + 1)
-                : () => {}
-            }
+            onClick={e => {
+              e.preventDefault();
+
+              if (currentPage < lastPageNumber) {
+                onPageChange(currentPage + 1);
+              }
+            }}
           >
             »
           </a>
